@@ -82,6 +82,8 @@ class TestSignupView(TestCase):
         response = self.client.post(self.url, invalid_data)
         # response.contextはdict型
         form = response.context["form"]
+        # DBにuserが存在しないことを確認
+        self.assertFalse(User.objects.filter(username=invalid_data["username"]).exists())
 
         self.assertEqual(response.status_code, 200)
 
@@ -98,7 +100,8 @@ class TestSignupView(TestCase):
         response = self.client.post(self.url, invalid_data)
         # response.contextはdict型
         form = response.context["form"]
-
+        # DBにuserが存在しないことを確認
+        self.assertFalse(User.objects.filter(username=invalid_data["username"]).exists())
         self.assertEqual(response.status_code, 200)
 
         self.assertIn("このフィールドは必須です。", form.errors["password1"])
@@ -135,6 +138,8 @@ class TestSignupView(TestCase):
         response = self.client.post(self.url, invalid_data)
         # response.contextはdict型
         form = response.context["form"]
+        # DBにuserが存在しないことを確認
+        self.assertFalse(User.objects.filter(username=invalid_data["username"]).exists())
 
         self.assertEqual(response.status_code, 200)
 
@@ -151,6 +156,8 @@ class TestSignupView(TestCase):
         response = self.client.post(self.url, invalid_data)
         # response.contextはdict型
         form = response.context["form"]
+        # DBにuserが存在しないことを確認
+        self.assertFalse(User.objects.filter(username=invalid_data["username"]).exists())
 
         self.assertEqual(response.status_code, 200)
 
@@ -167,6 +174,8 @@ class TestSignupView(TestCase):
         response = self.client.post(self.url, invalid_data)
         # response.contextはdict型
         form = response.context["form"]
+        # DBにuserが存在しないことを確認
+        self.assertFalse(User.objects.filter(username=invalid_data["username"]).exists())
 
         self.assertEqual(response.status_code, 200)
 
@@ -183,6 +192,8 @@ class TestSignupView(TestCase):
         response = self.client.post(self.url, invalid_data)
         # response.contextはdict型
         form = response.context["form"]
+        # DBにuserが存在しないことを確認
+        self.assertFalse(User.objects.filter(username=invalid_data["username"]).exists())
 
         self.assertEqual(response.status_code, 200)
 
@@ -199,6 +210,8 @@ class TestSignupView(TestCase):
         response = self.client.post(self.url, invalid_data)
         # response.contextはdict型
         form = response.context["form"]
+        # DBにuserが存在しないことを確認
+        self.assertFalse(User.objects.filter(username=invalid_data["username"]).exists())
 
         self.assertEqual(response.status_code, 200)
 
