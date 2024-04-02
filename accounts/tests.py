@@ -47,14 +47,12 @@ class TestSignupView(TestCase):
         response = self.client.post(self.url, invalid_data)
         # response.contextはdict型
         form = response.context["form"]
-        # print(response.context)
 
         self.assertEqual(response.status_code, 200)
         self.assertFalse(User.objects.filter(username=invalid_data["username"]).exists())
         self.assertFalse(form.is_valid())
         # assertInの第２引数はリストか辞書などの値
         self.assertIn("このフィールドは必須です。", form.errors["username"])
-        # print(form.errors)
 
     def test_failure_post_with_empty_username(self):
         invalid_data = {
