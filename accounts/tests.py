@@ -225,7 +225,8 @@ class TestSignupView(TestCase):
 
 class TestLoginView(TestCase):
     def setUp(self):
-        self.url = reverse("accounts:login")  # loginページのURLを取得
+        self.url = reverse("accounts:login")
+        self.user = User.objects.create_user(username="testuser", password="testpassword")
 
     def test_success_get(self):
         response = self.client.get(self.url)
@@ -241,17 +242,18 @@ class TestLoginView(TestCase):
             response,
             reverse(LOGIN_REDIRECT_URL),
             status_code=302,
-            target_status_code=200,
         )
         self.assertIn(SESSION_KEY, self.client.session)
 
     def test_failure_post_with_not_exists_user(self):
         invalid_data = {
-            "username": "testuser",
-            "password": "password",
+            "username": "unknown",
+            "password": "testpassword",
         }
+
         response = self.client.post(self.url, invalid_data)
         form = response.context["form"]
+
         self.assertEqual(response.status_code, 200)
         self.assertNotIn(SESSION_KEY, self.client.session)
         self.assertIn(
@@ -264,6 +266,7 @@ class TestLoginView(TestCase):
             "username": "testuser",
             "password": "",
         }
+
         response = self.client.post(self.url, invalid_data)
         form = response.context["form"]
 
