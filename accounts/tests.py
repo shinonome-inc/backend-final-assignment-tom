@@ -237,7 +237,12 @@ class TestLoginView(TestCase):
             "password": "testpassword",
         }
         response = self.client.post(self.url, valid_data)
-        self.assertRedirects(response, reverse(LOGIN_REDIRECT_URL), status_code=302, target_status_code=200,)
+        self.assertRedirects(
+            response,
+            reverse(LOGIN_REDIRECT_URL),
+            status_code=302,
+            target_status_code=200,
+        )
         self.assertIn(SESSION_KEY, self.client.session)
 
     def test_failure_post_with_not_exists_user(self):
