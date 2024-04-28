@@ -5,4 +5,6 @@
 {% block content %}
 <h1>Homeです</h1>
 <h2>ユーザー名：{{ user.get_username }}</h2>
+<br>
+<h3><a href="{% url 'tweets:create' %}">Tweetする</a></h3>
 {% endblock %}

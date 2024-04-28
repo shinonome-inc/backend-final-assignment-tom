@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1>Tweet List</h1>
+<ul>
+    {% for tweet in tweets %}
+    <li>{{ tweet.text }} - {{ tweet.user }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
