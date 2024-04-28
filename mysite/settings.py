@@ -131,3 +131,7 @@ AUTH_USER_MODEL = "accounts.User"
 
 # 最終課題ではならないが、usersというフォルダの中にUserというモデルを作成した場合は
 # AUTH_USER_MODEL = "users.User" となる
+
+LOGIN_URL = "accounts:login"
+LOGIN_REDIRECT_URL = "tweets:home"
+LOGOUT_REDIRECT_URL = "accounts:login"
