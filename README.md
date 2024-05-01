@@ -1,4 +1,4 @@
-# backend-final-assignment
+# TwitterのようなSNSを開発予定です。
 
 Template repository for final assignment of basic backend.
 
