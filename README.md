@@ -1,4 +1,5 @@
 # TwitterのようなSNSを開発予定です。
+# 現在ツイート機能を実装しています。
 
 Template repository for final assignment of basic backend.
 
