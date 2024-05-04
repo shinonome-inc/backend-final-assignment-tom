@@ -7,4 +7,13 @@
 <h2>ユーザー名：{{ user.get_username }}</h2>
 <br>
 <h3><a href="{% url 'tweets:create' %}">Tweetする</a></h3>
+{% for tweet in tweets %}
+<li>{{ tweet.text }} - {{ tweet.user }}
+    <br>
+    <a href="{% url 'tweets:detail' pk=tweet.pk %}">詳細</a>
+    <a href="{% url 'tweets:delete' pk=tweet.pk %}">削除</a>
+</li>
+{% endfor %}
+
+
 {% endblock %}
