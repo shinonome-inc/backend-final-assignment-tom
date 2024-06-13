@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% block title %}Home{% endblock %}
 
 {% block content %}
@@ -8,7 +7,7 @@
 <br>
 <h3><a href="{% url 'tweets:create' %}">Tweetする</a></h3>
 {% for tweet in tweets %}
-<li>{{ tweet.text }} - {{ tweet.user }}
+<li>{{ tweet.text }} - {{ tweet.user }} - {{ tweet.created_at }}
     <br>
     <a href="{% url 'tweets:detail' pk=tweet.pk %}">詳細</a>
     <a href="{% url 'tweets:delete' pk=tweet.pk %}">削除</a>

@@ -6,7 +6,7 @@
 <h1>Tweet List</h1>
 <ul>
     {% for tweet in tweets %}
-    <li>{{ tweet.text }} - {{ tweet.user }}</li>
+    <li>{{ tweet.text }} - {{ tweet.user }} - {{ tweet.created_at }}</li>
     {% endfor %}
 </ul>
 {% endblock %}
