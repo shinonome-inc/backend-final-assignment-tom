@@ -13,7 +13,7 @@ class HomeView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['tweets'] = Tweet.objects.all()  # すべてのツイートを取得
+        context["tweets"] = Tweet.objects.all()  # すべてのツイートを取得
         return context
 
 
@@ -25,7 +25,7 @@ class TweetDetailView(ListView):
 
     def get_queryset(self):
         # pk を使って特定のツイートを取得
-        return Tweet.objects.filter(pk=self.kwargs['pk'])
+        return Tweet.objects.filter(pk=self.kwargs["pk"])
 
 
 class TweetCreateView(LoginRequiredMixin, CreateView):
@@ -38,10 +38,10 @@ class TweetCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('tweets:home')
+        return reverse_lazy("tweets:home")
 
 
 class TweetDeleteView(LoginRequiredMixin, DeleteView):
     model = Tweet
-    success_url = reverse_lazy('tweets:home')
+    success_url = reverse_lazy("tweets:home")
     template_name = "delete.html"
