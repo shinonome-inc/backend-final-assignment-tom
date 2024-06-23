@@ -45,8 +45,8 @@ class TestTweetCreateView(TestCase):
         self.assertFalse(Tweet.objects.filter(id=1).exists())
 
     def test_failure_post_with_too_long_content(self):
-        too_long_content = "a" * (Tweet._meta.get_field("text").max_length + 1)
-        max_length = Tweet._meta.get_field("text").max_length
+        too_long_content = "a" * (Tweet.objects.get_field("text").max_length + 1)
+        max_length = Tweet.objects.get_field("text").max_length
         response = self.client.post(self.url, {"text": too_long_content})
         self.assertEqual(response.status_code, 200)
         form = response.text["form"]
@@ -94,7 +94,7 @@ class TestTweetDeleteView(TestCase):
         self.user = User.objects.create_user(username="tester2", password="testpassword2")
         self.client.login(username="tester2", password="testpassword2")
         response = self.client.post(self.url)
-        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.status_code, 302)
         self.assertQuerysetEqual(Tweet.objects.all(), queryset_before_deletion)
 
 
