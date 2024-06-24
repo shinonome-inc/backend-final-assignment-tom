@@ -4,7 +4,6 @@ from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, TemplateView
 
-from .forms import TweetForm
 from .models import Tweet
 
 
@@ -30,15 +29,14 @@ class TweetDetailView(ListView):
 
 class TweetCreateView(LoginRequiredMixin, CreateView):
     model = Tweet
-    form_class = TweetForm
+    fields = ["text"]
     template_name = "tweets/create.html"
+
+    success_url = reverse_lazy("tweets:home")
 
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         form.instance.user = self.request.user
         return super().form_valid(form)
-
-    def get_success_url(self):
-        return reverse_lazy("tweets:home")
 
 
 class TweetDeleteView(LoginRequiredMixin, DeleteView):

@@ -45,15 +45,17 @@ class TestTweetCreateView(TestCase):
         self.assertFalse(Tweet.objects.filter(id=1).exists())
 
     def test_failure_post_with_too_long_content(self):
-        too_long_content = "a" * (Tweet.objects.get_field("text").max_length + 1)
-        max_length = Tweet.objects.get_field("text").max_length
+        too_long_content = "a" * 3000
+        print(too_long_content)
+        length = len(too_long_content)
         response = self.client.post(self.url, {"text": too_long_content})
         self.assertEqual(response.status_code, 200)
-        form = response.text["form"]
-        self.assertTrue(
-            "このフィールドの文字数は {0} 文字以下にしてください。".format(max_length),
+        form = response.context["form"]
+        self.assertIn(
+            f"この値は 280 文字以下でなければなりません( {length} 文字になっています)。",
             form.errors["text"],
         )
+
         self.assertFalse(Tweet.objects.filter(id=1).exists())
 
 
