@@ -7,36 +7,25 @@
 </head>
 
 <body>
-  <!-- header  -->
-  <header class="mb-3">
-    <nav>
-      <ul>
-        <li><a href="{% url 'tweets:home' %}">Twitter Clone</a></li>
-      </ul>
-    </nav>
+  <ul>
+    <li>
+      <a href="{% url 'tweets:home' %}">Twitter Clone</a>
+    </li>
     {% if user.is_authenticated %}
-    <nav>
-      <ul>
-        <li><a href="{% url 'accounts:logout' %}">LogOut</a></li>
-      </ul>
-    </nav>
+    <li>
+      <a href="{% url 'accounts:logout' %}">LogOut</a>
+    </li>
     {% else %}
-    <nav>
-      <ul>
-        <li><a href="{% url 'accounts:signup' %}">SignUp</a></li>
-        <li><a href="{% url 'accounts:login' %}">LogIn</a></li>
-      </ul>
-    </nav>
+    <li>
+      <a href="{% url 'accounts:signup' %}">SignUp</a>
+    </li>
+    <li>
+      <a href="{% url 'accounts:login' %}">LogIn</a>
+    </li>
     {% endif %}
-  </header>
-  <!-- /header  -->
-
-  <!-- main  -->
-  <main>
-    {% block content %}
-    {% endblock %}
-  </main>
-  <!-- /main  -->
+  </ul>
+  {% block content %}
+  {% endblock %}
 </body>
 
 </html>
