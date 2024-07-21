@@ -29,10 +29,14 @@ class TestTweetCreateView(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_success_post(self):
-        post_data = {"content": "This is a test tweet!"}
+        post_data = {"text": "This is a test tweet!"}
         response = self.client.post(self.url, post_data)
-        self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse("tweets:home"))
+        self.assertRedirects(
+            response, 
+            reverse("tweets:home"),
+            status_code=302,
+            target_status_code=200,
+        )
         self.assertTrue(Tweet.objects.filter(id=1).exists())
         self.assertEqual(Tweet.objects.get(id=1).text, post_data["text"])
 

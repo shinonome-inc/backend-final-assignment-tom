@@ -23,7 +23,6 @@ urlpatterns = [
     path("accounts/", include("accounts.urls")),
     path("tweets/", include("tweets.urls")),
     path("", include("welcome.urls")),
-    path("home/", include("accounts.urls")),
 ]
 
 # django-debug-toolbarの設定

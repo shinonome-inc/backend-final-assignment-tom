@@ -34,7 +34,7 @@ class TweetCreateView(LoginRequiredMixin, CreateView):
 
     success_url = reverse_lazy("tweets:home")
 
-    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+    def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
