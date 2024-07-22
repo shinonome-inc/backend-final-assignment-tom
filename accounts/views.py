@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView
 from .forms import SignupForm
 from tweets.models import Tweet
+from django.shortcuts import get_object_or_404
 
 User = get_user_model()
 
@@ -30,7 +31,11 @@ class UserProfileView(LoginRequiredMixin, DetailView):
     slug_field = "username"
     slug_url_kwarg = "username"
 
+    # ログインしているユーザーのツイートのみ取得
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        username = self.kwargs.get('username')
+        user = get_object_or_404(User, username=username)
+        context['user'] = user
         context["profile_list"] = Tweet.objects.filter(user=self.object).select_related("user")
         return context

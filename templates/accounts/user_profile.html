@@ -1,7 +1,29 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block title %}Profile{% endblock %}
 
 {% block content %}
-<p>{{ user.get_username }}</p>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<div class="header">
+    <h1>My Profile</h1>
+</div>
+<div class="container">
+    <div class="profile-header">
+        <h2>{{ user.get_username }}</h2>
+    </div>
+    <h3>Your Tweets</h3>
+    <ul class="tweets">
+    {% for tweet in profile_list %}
+        <li class="tweet">
+            {{ tweet.text }} - {{ tweet.created_at }}
+            <br>
+            <a href="{% url 'tweets:detail' pk=tweet.pk %}">詳細</a>
+            <a href="{% url 'tweets:delete' pk=tweet.pk %}">削除</a>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+
 {% endblock %}

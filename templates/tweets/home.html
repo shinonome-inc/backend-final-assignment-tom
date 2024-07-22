@@ -3,7 +3,7 @@
 
 {% block content %}
 <h1>Homeです</h1>
-<h2>ユーザー名：{{ user.get_username }}</h2>
+<h2><a href="{% url 'accounts:user_profile' user.username %}">ユーザー名：{{ user.get_username }}</a></h2>
 <br>
 <h3><a href="{% url 'tweets:create' %}">Tweetする</a></h3>
 {% for tweet in tweets %}
