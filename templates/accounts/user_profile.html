@@ -3,27 +3,29 @@
 {% load static %}
 
 {% block title %}Profile{% endblock %}
-
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-<div class="header">
-    <h1>My Profile</h1>
-</div>
-<div class="container">
-    <div class="profile-header">
-        <h2>{{ user.get_username }}</h2>
-    </div>
-    <h3>Your Tweets</h3>
-    <ul class="tweets">
-    {% for tweet in profile_list %}
-        <li class="tweet">
-            {{ tweet.text }} - {{ tweet.created_at }}
-            <br>
-            <a href="{% url 'tweets:detail' pk=tweet.pk %}">詳細</a>
-            <a href="{% url 'tweets:delete' pk=tweet.pk %}">削除</a>
-        </li>
-    {% endfor %}
-    </ul>
-</div>
 
+<div class="bg-gray-100 min-h-screen">
+    <div class="bg-blue-600 p-4">
+        <h1 class="text-white text-3xl">My Tweet</h1>
+    </div>
+    <div class="container mx-auto p-4">
+        <div class="bg-white p-4 rounded shadow-md">
+            <h2 class="text-xl font-bold">{{ user.get_username }}</h2>
+        </div>
+        <h3 class="text-lg font-semibold mt-4">Your Tweets</h3>
+        <ul class="space-y-4">
+        {% for tweet in profile_list %}
+            <li class="bg-white p-4 rounded shadow-md">
+                <p>{{ tweet.text }}</p>
+                <p class="text-gray-600 text-sm">{{ tweet.created_at }}</p>
+                <div class="mt-2 space-x-2">
+                    <a href="{% url 'tweets:detail' pk=tweet.pk %}" class="text-blue-600 hover:underline">詳細</a>
+                    <a href="{% url 'tweets:delete' pk=tweet.pk %}" class="text-red-600 hover:underline">削除</a>
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
 {% endblock %}
