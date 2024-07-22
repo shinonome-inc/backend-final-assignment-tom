@@ -32,7 +32,7 @@ class TestTweetCreateView(TestCase):
         post_data = {"text": "This is a test tweet!"}
         response = self.client.post(self.url, post_data)
         self.assertRedirects(
-            response, 
+            response,
             reverse("tweets:home"),
             status_code=302,
             target_status_code=200,
@@ -59,7 +59,6 @@ class TestTweetCreateView(TestCase):
             f"この値は 280 文字以下でなければなりません( {length} 文字になっています)。",
             form.errors["text"],
         )
-
         self.assertFalse(Tweet.objects.filter(id=1).exists())
 
 
