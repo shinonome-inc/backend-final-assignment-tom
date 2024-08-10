@@ -13,9 +13,13 @@ class TestHomeView(TestCase):
         self.client.login(username="tester", password="testpassword")
 
     def test_success_get(self):
-        self.url = reverse("tweets:home")
-        response = self.client.get(self.url)
+        response = self.client.get(reverse("tweets:home"))
+        # ステータスコードが200であることを確認
         self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "tweets/home.html")
+        text = response.context["tweets"]
+        true_text = Tweet.objects.all()
+        self.assertQuerysetEqual(text, true_text, ordered=False)
 
 
 class TestTweetCreateView(TestCase):
@@ -50,7 +54,6 @@ class TestTweetCreateView(TestCase):
 
     def test_failure_post_with_too_long_content(self):
         too_long_content = "a" * 3000
-        print(too_long_content)
         length = len(too_long_content)
         response = self.client.post(self.url, {"text": too_long_content})
         self.assertEqual(response.status_code, 200)
