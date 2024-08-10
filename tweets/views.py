@@ -10,7 +10,8 @@ class HomeView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["tweets"] = Tweet.objects.all()  # すべてのツイートを取得
+        # ユーザーを事前にロードするためにselect_relatedを使用
+        context["tweets"] = Tweet.objects.select_related('user').all()
         return context
 
 

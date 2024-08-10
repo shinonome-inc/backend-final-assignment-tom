@@ -6,7 +6,7 @@
     <h1 class="text-3xl font-bold mb-4">Homeです</h1>
     <h2 class="text-xl mb-4">
         <a href="{% url 'accounts:user_profile' user.username %}" class="text-blue-500 hover:underline">
-            ユーザー名：{{ user.get_username }}
+            ユーザー名：{{ user.username }}
         </a>
     </h2>
     <br>
@@ -19,7 +19,7 @@
     {% for tweet in tweets %}
         <li class="bg-white p-4 rounded-lg shadow-md">
             <p class="mb-2">{{ tweet.text }}</p>
-            <p class="text-gray-500 text-sm">{{ tweet.user }} - {{ tweet.created_at }}</p>
+            <p class="text-gray-500 text-sm">{{ tweet.user.username }} - {{ tweet.created_at }}</p>
             <div class="mt-2 space-x-2">
                 <a href="{% url 'tweets:detail' pk=tweet.pk %}" class="text-blue-500 hover:underline">
                     詳細
