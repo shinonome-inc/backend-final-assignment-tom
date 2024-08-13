@@ -1,11 +1,15 @@
 from django.conf import settings
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, get_user_model, login
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import CreateView, DetailView
+
+from tweets.models import Tweet
 
 from .forms import SignupForm
+
+User = get_user_model()
 
 
 class SignupView(CreateView):
@@ -22,16 +26,18 @@ class SignupView(CreateView):
         return response
 
 
-class UserProfileView(LoginRequiredMixin, TemplateView):
+class UserProfileView(LoginRequiredMixin, DetailView):
     model = User
     template_name = "accounts/user_profile.html"
     context_object_name = "user"
     slug_field = "username"
     slug_url_kwarg = "username"
 
+    # ログインしているユーザーのツイートのみ取得
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         username = self.kwargs.get("username")
-        user = User.objects.get(username=username)
+        user = get_object_or_404(User, username=username)
         context["user"] = user
+        context["profile_list"] = Tweet.objects.filter(user=self.object).select_related("user")
         return context

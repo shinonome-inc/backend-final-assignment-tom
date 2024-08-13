@@ -1,0 +1,25 @@
+{
+  "name": "backend-final-assignment-tom",
+  "version": "1.0.0",
+  "description": "Template repository for final assignment of basic backend.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nt010/backend-final-assignment-tom.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nt010/backend-final-assignment-tom/issues"
+  },
+  "homepage": "https://github.com/nt010/backend-final-assignment-tom#readme",
+  "dependencies": {
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.39",
+    "tailwindcss": "^3.4.6"
+  }
+}

@@ -128,3 +128,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# tailwind
+node_modules/
+static/css/dist/

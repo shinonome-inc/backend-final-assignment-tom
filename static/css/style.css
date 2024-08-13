@@ -1,0 +1,52 @@
+/* static/css/style.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.header {
+    background-color: #4267B2;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.profile-header {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.profile-header h2 {
+    margin: 0;
+    color: #333;
+}
+
+.tweets {
+    list-style: none;
+    padding: 0;
+}
+
+.tweet {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tweet a {
+    text-decoration: none;
+    color: #4267B2;
+    margin-right: 10px;
+}
